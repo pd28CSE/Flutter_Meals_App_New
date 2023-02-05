@@ -34,7 +34,12 @@ class MyApp extends StatelessWidget {
             ),
       ),
       title: 'App Bar',
-      home: const CategoriesScreen(),
+      // home: const CategoriesScreen(),
+      initialRoute: CategoriesScreen.routeName,
+      routes: {
+        CategoriesScreen.routeName: (cntxt) => const CategoriesScreen(),
+        CategoryMealsScreen.routeName: (cntxt) => CategoryMealsScreen(),
+      },
     );
   }
 }

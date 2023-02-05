@@ -14,16 +14,21 @@ class CategoryItem extends StatelessWidget {
   });
 
   void chageScreen(BuildContext cntxt, String id, String title) {
-    Navigator.of(cntxt).push(
-      MaterialPageRoute(
-        builder: (_) {
-          return CategoryMealsScreen(
-            categoryId: id,
-            categoryTitle: title,
-          );
-        },
-      ),
-    );
+    // Navigator.of(cntxt).push(
+    //   MaterialPageRoute(
+    //     builder: (_) {
+    //       return CategoryMealsScreen(
+    //         categoryId: id,
+    //         categoryTitle: title,
+    //       );
+    //     },
+    //   ),
+    // );
+
+    Navigator.of(cntxt).pushNamed(CategoryMealsScreen.routeName, arguments: {
+      'id': id,
+      'title': title,
+    });
   }
 
   @override
@@ -37,8 +42,8 @@ class CategoryItem extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              bgcolor,
               bgcolor.withOpacity(0.4),
+              bgcolor,
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
