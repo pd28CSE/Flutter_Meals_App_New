@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import './screens/categories_screen.dart';
 import './screens/category_meals_screen.dart';
 import './screens/meal_detail_screen.dart';
+import 'screens/page_not_found_error_screen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -50,13 +51,14 @@ class MyApp extends StatelessWidget {
                     mealId: routeArgs,
                   ));
         }
-        // else if(settings.name == 'other routes'){
+        // else if (settings.name == 'other routes') {
         //   return MaterialPageRoute(builder: (cntxt) => AnyOtherScreen());
         // }
-        else {
-          return MaterialPageRoute(
-              builder: (cntxt) => const CategoriesScreen());
-        }
+      },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (cntxt) => const PageNotFoundErrorMessageScreen(),
+        );
       },
     );
   }
