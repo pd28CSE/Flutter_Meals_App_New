@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:practice/models/meal.dart';
 
 import '../models/dummy_data.dart';
+import '../screens/meal_detail_screen.dart';
 
 class MealItem extends StatelessWidget {
   final String id;
@@ -36,13 +37,18 @@ class MealItem extends StatelessWidget {
     }
   }
 
+  void changeScreen(BuildContext context, String mealId) {
+    Navigator.of(context)
+        .pushNamed(MealDetailScreen.routeName, arguments: mealId);
+  }
+
   @override
   Widget build(BuildContext context) {
     final meal = DUMMY_MEALS.firstWhere((mealItem) {
       return mealItem.id == id;
     });
     return InkWell(
-      onTap: () {},
+      onTap: () => changeScreen(context, meal.id),
       splashColor: Colors.pink,
       child: Card(
         margin: const EdgeInsets.all(10),
