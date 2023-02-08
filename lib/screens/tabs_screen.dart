@@ -13,9 +13,9 @@ class TabsScreen extends StatefulWidget {
 
 class _TabsScreenState extends State<TabsScreen> {
   int _currentScreenIndex = 0;
-  List<Widget> _tabScreens = [
-    CategoriesScreen(),
-    FavouriteScreen(),
+  List<Map<String, Object>> _tabScreens = [
+    {'screen': CategoriesScreen(), 'title': 'Categories'},
+    {'screen': FavouriteScreen(), 'title': 'Favourites'},
   ];
 
   void _changeScreen(int index) {
@@ -28,9 +28,9 @@ class _TabsScreenState extends State<TabsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('App Bar'),
+        title: Text(_tabScreens[_currentScreenIndex]['title'] as String),
       ),
-      body: _tabScreens[_currentScreenIndex],
+      body: _tabScreens[_currentScreenIndex]['screen'] as Widget,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentScreenIndex,
         onTap: _changeScreen,
