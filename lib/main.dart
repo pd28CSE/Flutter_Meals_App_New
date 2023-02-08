@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import './screens/categories_screen.dart';
 import './screens/category_meals_screen.dart';
 import './screens/meal_detail_screen.dart';
-import 'screens/page_not_found_error_screen.dart';
+import './screens/page_not_found_error_screen.dart';
+import 'screens/tabs_screen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -37,19 +38,18 @@ class MyApp extends StatelessWidget {
       ),
       title: 'App Bar',
       // home: const CategoriesScreen(),
-      initialRoute: CategoriesScreen.routeName,
+      initialRoute: TabsScreen.routeName,
       routes: {
         CategoriesScreen.routeName: (cntxt) => const CategoriesScreen(),
         CategoryMealsScreen.routeName: (cntxt) => CategoryMealsScreen(),
         // MealDetailScreen.routeName: (cntxt) => MealDetailScreen(),
+        TabsScreen.routeName: (cntxt) => const TabsScreen(),
       },
       onGenerateRoute: (settings) {
         if (settings.name == MealDetailScreen.routeName) {
           final String routeArgs = settings.arguments as String;
           return MaterialPageRoute(
-              builder: (cntxt) => MealDetailScreen(
-                    mealId: routeArgs,
-                  ));
+              builder: (cntxt) => MealDetailScreen(mealId: routeArgs));
         }
         // else if (settings.name == 'other routes') {
         //   return MaterialPageRoute(builder: (cntxt) => AnyOtherScreen());
@@ -57,8 +57,7 @@ class MyApp extends StatelessWidget {
       },
       onUnknownRoute: (settings) {
         return MaterialPageRoute(
-          builder: (cntxt) => const PageNotFoundErrorMessageScreen(),
-        );
+            builder: (cntxt) => const PageNotFoundErrorMessageScreen());
       },
     );
   }
