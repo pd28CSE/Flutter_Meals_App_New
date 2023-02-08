@@ -4,6 +4,7 @@ import './screens/categories_screen.dart';
 import './screens/category_meals_screen.dart';
 import './screens/meal_detail_screen.dart';
 import 'screens/page_not_found_error_screen.dart';
+import './screens/tabs_screen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -37,8 +38,11 @@ class MyApp extends StatelessWidget {
       ),
       title: 'App Bar',
       // home: const CategoriesScreen(),
-      initialRoute: CategoriesScreen.routeName,
+      initialRoute: TabsScreen.routeName,
       routes: {
+        TabsScreen.routeName: (cntxt) {
+          return const TabsScreen();
+        },
         CategoriesScreen.routeName: (cntxt) => const CategoriesScreen(),
         CategoryMealsScreen.routeName: (cntxt) => CategoryMealsScreen(),
         // MealDetailScreen.routeName: (cntxt) => MealDetailScreen(),
@@ -60,25 +64,6 @@ class MyApp extends StatelessWidget {
           builder: (cntxt) => const PageNotFoundErrorMessageScreen(),
         );
       },
-    );
-  }
-}
-
-class MyHomeScreen extends StatefulWidget {
-  const MyHomeScreen({super.key});
-
-  @override
-  State<MyHomeScreen> createState() => _MyHomeScreenState();
-}
-
-class _MyHomeScreenState extends State<MyHomeScreen> {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('App Bar'),
-      ),
     );
   }
 }
