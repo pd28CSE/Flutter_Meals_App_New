@@ -5,6 +5,7 @@ import '../models/meal.dart';
 import '../widgets/meal_item.dart';
 
 class CategoryMealsScreen extends StatefulWidget {
+  const CategoryMealsScreen({super.key});
   static const String routeName = 'meals-category';
 
   @override
