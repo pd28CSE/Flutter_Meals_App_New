@@ -4,13 +4,18 @@ import 'package:practice/models/meal.dart';
 import '../models/dummy_data.dart';
 import '../screens/meal_detail_screen.dart';
 
-class MealItem extends StatelessWidget {
+class MealItem extends StatefulWidget {
   final String id;
   const MealItem({
     super.key,
     required this.id,
   });
 
+  @override
+  State<MealItem> createState() => _MealItemState();
+}
+
+class _MealItemState extends State<MealItem> {
   String getComplexityText(Complexity complexity) {
     switch (complexity) {
       case Complexity.Simple:
@@ -39,13 +44,16 @@ class MealItem extends StatelessWidget {
 
   void changeScreen(BuildContext context, String mealId) {
     Navigator.of(context)
-        .pushNamed(MealDetailScreen.routeName, arguments: mealId);
+        .pushNamed(MealDetailScreen.routeName, arguments: mealId)
+        .then((removeMealId) {
+      print(removeMealId);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final meal = DUMMY_MEALS.firstWhere((mealItem) {
-      return mealItem.id == id;
+      return mealItem.id == widget.id;
     });
     return InkWell(
       onTap: () => changeScreen(context, meal.id),
