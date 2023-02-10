@@ -14,6 +14,10 @@ class CategoryMealsScreen extends StatelessWidget {
   //   required this.categoryTitle,
   // });
 
+  void deleteMealOnPressed(String mealId) {
+    print('remove -> $mealId');
+  }
+
   @override
   Widget build(BuildContext context) {
     final routeArgs =
@@ -30,7 +34,10 @@ class CategoryMealsScreen extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (cntxt, index) {
-          return MealItem(id: categoryMeals[index].id);
+          return MealItem(
+            id: categoryMeals[index].id,
+            deleteMeal: deleteMealOnPressed,
+          );
         },
         itemCount: categoryMeals.length,
       ),
