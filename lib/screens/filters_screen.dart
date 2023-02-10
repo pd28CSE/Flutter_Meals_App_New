@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/main_drawer.dart';
+
 class FiltersScreen extends StatelessWidget {
   static const String routeName = 'filters-screen';
   const FiltersScreen({super.key});
@@ -10,6 +12,7 @@ class FiltersScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Filters'),
       ),
+      drawer: MainDrawer(),
       body: Center(
         child: Text('Filters'),
       ),

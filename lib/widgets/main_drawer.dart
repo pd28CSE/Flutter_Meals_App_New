@@ -46,10 +46,11 @@ class MainDrawer extends StatelessWidget {
             height: 15,
           ),
           buildFiter(Icons.restaurant, 'Restaurant', () {
-            Navigator.of(context).pushNamed(TabsScreen.routeName);
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (cntxt) => const TabsScreen()));
           }),
           buildFiter(Icons.settings, 'Filter', () {
-            Navigator.of(context).pushNamed(FiltersScreen.routeName);
+            Navigator.of(context).pushReplacementNamed(FiltersScreen.routeName);
           }),
         ],
       ),
