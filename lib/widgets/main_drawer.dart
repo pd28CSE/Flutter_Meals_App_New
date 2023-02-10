@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../screens/tabs_screen.dart';
+import '../screens/filters_screen.dart';
+
 class MainDrawer extends StatelessWidget {
   const MainDrawer({super.key});
 
@@ -43,10 +46,10 @@ class MainDrawer extends StatelessWidget {
             height: 15,
           ),
           buildFiter(Icons.restaurant, 'Restaurant', () {
-            print('Restaurant');
+            Navigator.of(context).pushNamed(TabsScreen.routeName);
           }),
           buildFiter(Icons.settings, 'Filter', () {
-            print('Filter');
+            Navigator.of(context).pushNamed(FiltersScreen.routeName);
           }),
         ],
       ),

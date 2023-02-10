@@ -5,6 +5,7 @@ import './screens/category_meals_screen.dart';
 import './screens/meal_detail_screen.dart';
 import 'screens/page_not_found_error_screen.dart';
 import './screens/tabs_screen.dart';
+import './screens/filters_screen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         CategoriesScreen.routeName: (cntxt) => const CategoriesScreen(),
         CategoryMealsScreen.routeName: (cntxt) => CategoryMealsScreen(),
         // MealDetailScreen.routeName: (cntxt) => MealDetailScreen(),
+        FiltersScreen.routeName: (cntxt) => const FiltersScreen(),
       },
       onGenerateRoute: (settings) {
         if (settings.name == MealDetailScreen.routeName) {
