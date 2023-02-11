@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice/screens/favourite_screen.dart';
 
 import './models/meal.dart';
 import './models/dummy_data.dart';
@@ -51,7 +52,7 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  void _toggle_favouriteMeals(String mealId) {
+  void _toggleFavouriteMeals(String mealId) {
     int mealIndex =
         _favouriteMeals.indexWhere((mealItem) => (mealItem.id == mealId));
     if (mealIndex >= 0) {
@@ -60,9 +61,14 @@ class _MyAppState extends State<MyApp> {
       });
     } else {
       setState(() {
-        _favouriteMeals.add(DUMMY_MEALS.elementAt(mealIndex));
+        _favouriteMeals
+            .add(DUMMY_MEALS.firstWhere((meal) => meal.id == mealId));
       });
     }
+  }
+
+  bool _isFavouriteMeal(String mealId) {
+    return _favouriteMeals.any((favouriteMeal) => favouriteMeal.id == mealId);
   }
 
   @override
@@ -111,6 +117,8 @@ class _MyAppState extends State<MyApp> {
           return MaterialPageRoute(
               builder: (cntxt) => MealDetailScreen(
                     mealId: routeArgs,
+                    togolFavouriteMeal: _toggleFavouriteMeals,
+                    isFavouriteMeal: _isFavouriteMeal,
                   ));
         }
         // else if (settings.name == 'other routes') {

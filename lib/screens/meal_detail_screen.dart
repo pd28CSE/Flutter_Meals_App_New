@@ -6,7 +6,14 @@ import '../models/dummy_data.dart';
 class MealDetailScreen extends StatelessWidget {
   static const String routeName = 'meal-detail';
   final String mealId;
-  const MealDetailScreen({super.key, required this.mealId});
+  final Function togolFavouriteMeal;
+  final Function isFavouriteMeal;
+  const MealDetailScreen({
+    super.key,
+    required this.mealId,
+    required this.togolFavouriteMeal,
+    required this.isFavouriteMeal,
+  });
 
   Meal get selectedMeal {
     return DUMMY_MEALS.firstWhere((meal) {
@@ -48,7 +55,7 @@ class MealDetailScreen extends StatelessWidget {
               Navigator.of(context).pop(mealId);
             },
             icon: const Icon(
-              Icons.remove,
+              Icons.delete,
             ),
             tooltip: 'Remove',
           ),
@@ -134,8 +141,11 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.star),
+        onPressed: () {
+          togolFavouriteMeal(mealId);
+        },
+        child: Icon(
+            isFavouriteMeal(mealId) == true ? Icons.star : Icons.star_border),
       ),
     );
   }
