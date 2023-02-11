@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './models/meal.dart';
+import './models/dummy_data.dart';
 import './screens/categories_screen.dart';
 import './screens/category_meals_screen.dart';
 import './screens/meal_detail_screen.dart';
@@ -9,8 +11,44 @@ import './screens/filters_screen.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Map<String, bool> _filters = {
+    'gluten': false,
+    'lactose': false,
+    'vegan': false,
+    'vegetarian': false,
+  };
+
+  List<Meal> _availableMeals = DUMMY_MEALS;
+
+  void _setFilters(Map<String, bool> newFilters) {
+    setState(() {
+      _filters = newFilters;
+      _availableMeals = DUMMY_MEALS.where((meal) {
+        if (_filters['gluten'] == true && meal.isGlutenFree == false) {
+          return false;
+        }
+        if (_filters['lactose'] == true && meal.isLactoseFree == false) {
+          return false;
+        }
+        if (_filters['vegan'] == true && meal.isVegan == false) {
+          return false;
+        }
+        if (_filters['vegetarian'] == true && meal.isVegetarian == false) {
+          return false;
+        }
+
+        return true;
+      }).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +84,11 @@ class MyApp extends StatelessWidget {
           return const TabsScreen();
         },
         CategoriesScreen.routeName: (cntxt) => const CategoriesScreen(),
-        CategoryMealsScreen.routeName: (cntxt) => CategoryMealsScreen(),
+        CategoryMealsScreen.routeName: (cntxt) =>
+            CategoryMealsScreen(availableMeals: _availableMeals),
         // MealDetailScreen.routeName: (cntxt) => MealDetailScreen(),
-        FiltersScreen.routeName: (cntxt) => const FiltersScreen(),
+        FiltersScreen.routeName: (cntxt) => FiltersScreen(
+            currentFilters: _filters, setFilterOnPressed: _setFilters),
       },
       onGenerateRoute: (settings) {
         if (settings.name == MealDetailScreen.routeName) {

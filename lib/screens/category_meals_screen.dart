@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../models/dummy_data.dart';
 import '../models/meal.dart';
 import '../widgets/meal_item.dart';
 
 class CategoryMealsScreen extends StatefulWidget {
-  const CategoryMealsScreen({super.key});
   static const String routeName = 'meals-category';
+  final List<Meal> availableMeals;
+  const CategoryMealsScreen({super.key, required this.availableMeals});
 
   @override
   State<CategoryMealsScreen> createState() => _CategoryMealsScreenState();
@@ -30,7 +30,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
         ModalRoute.of(context)!.settings.arguments as Map<String, String>;
     final String categoryId = routeArgs['id'] as String;
     categoryTitle = routeArgs['title'] as String;
-    displayedMeals = DUMMY_MEALS.where((item) {
+    displayedMeals = widget.availableMeals.where((item) {
       return item.categories.contains(categoryId);
     }).toList();
     super.didChangeDependencies();
@@ -38,7 +38,6 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     print('------dispose');
     super.dispose();
   }
