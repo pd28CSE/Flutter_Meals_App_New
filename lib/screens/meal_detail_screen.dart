@@ -42,6 +42,17 @@ class MealDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(selectedMeal.title),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pop(mealId);
+            },
+            icon: const Icon(
+              Icons.remove,
+            ),
+            tooltip: 'Remove',
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -123,8 +134,8 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).pop(mealId),
-        child: const Icon(Icons.delete),
+        onPressed: () {},
+        child: const Icon(Icons.star),
       ),
     );
   }
