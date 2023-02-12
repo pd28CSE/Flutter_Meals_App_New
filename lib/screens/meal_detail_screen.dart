@@ -37,6 +37,7 @@ class MealDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('-----------------Meal details------------');
     /* ------------- this part is use when, this "MealDetailScreen"
      class is not data pass through constructor ---------------*/
 

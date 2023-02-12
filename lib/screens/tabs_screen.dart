@@ -38,6 +38,7 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('--------tab scr-----');
     return Scaffold(
       appBar: AppBar(
         title: Text(_tabScreens[_currentScreenIndex]['title'] as String),

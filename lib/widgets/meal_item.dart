@@ -52,6 +52,7 @@ class MealItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('--------meal item');
     final meal = DUMMY_MEALS.firstWhere((mealItem) {
       return mealItem.id == id;
     });

@@ -51,6 +51,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('-------catego  meal scr------');
     return Scaffold(
       appBar: AppBar(
         title: Text(categoryTitle as String),

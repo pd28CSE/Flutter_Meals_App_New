@@ -44,6 +44,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('----------filter scr------');
     return Scaffold(
       appBar: AppBar(
         title: const Text('Filters'),

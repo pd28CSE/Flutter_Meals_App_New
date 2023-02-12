@@ -33,6 +33,7 @@ class CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('-------cate item---------');
     return InkWell(
       borderRadius: BorderRadius.circular(10),
       splashColor: bgcolor,
